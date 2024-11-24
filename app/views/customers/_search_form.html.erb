@@ -1,0 +1,18 @@
+<%= form_with(url: customers_path, method: :get, local: true, class: "form-inline", id: "search-form") do |form| %>
+
+  <div class="col-auto">
+    <%= form.label :date_type, "Graduation Date Search", class: "form-label" %>
+    <%= form.select :date_type, options_for_select([['Before', 'before'], ['After', 'after']]), { prompt: "Select Option" }, name: 'search[date_type]', class: "form-control" %>
+  </div>
+  
+
+
+  <div>
+    <%= form.submit "Search", class: "btn btn-primary"%>
+    <%= form.submit "Show All", class: "btn btn-secondary"%>
+  </div>
+
+
+<% end %>
+
+

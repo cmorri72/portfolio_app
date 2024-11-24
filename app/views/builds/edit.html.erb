@@ -1,0 +1,28 @@
+<h1>Editing build</h1>
+
+<%= form_with model: @build, url: build_path(@build), method: :patch do |f| %>
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title, required: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :notes %>
+    <%= f.text_area :notes %>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_modified %>
+    <%= f.date_select :last_modified %>
+  </div>
+
+  <div class="field">
+    <%= f.label :build_image %>
+    <%= f.file_field :build_image %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Update Build", class: "btn btn-primary" %>
+    <%= link_to "Cancel", builds_path, class: "btn btn-secondary" %>
+  </div>
+<% end %>

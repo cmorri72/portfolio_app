@@ -1,0 +1,20 @@
+<h1>My Builds</h1>
+
+<%= link_to "Create a Build", new_build_path, class: "btn btn-primary" %>
+
+<% if @builds.any? %>
+  <ul>
+    <% @builds.each do |build| %>
+      <li>
+        <strong>Title:</strong> <%= build.title %><br>
+        <strong>Notes:</strong> <%= build.notes %><br>
+        <strong>Last Modified:</strong> <%= build.last_modified %><br>
+        <strong>Active:</strong> <%= build.active ? 'Yes' : 'No' %>
+        <%= link_to "Edit", edit_build_path(build), class: "btn btn-secondary" %>
+        <%= button_to "Delete", build_path(build), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No builds found. Click "Create a Build" to get started!</p>
+<% end %>

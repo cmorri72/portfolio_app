@@ -1,0 +1,20 @@
+<%= form_with(model: @customer, local: true) do |form| %>
+  <%= form.label :first_name %>
+  <%= form.text_field :first_name %>
+
+  <%= form.label :last_name %>
+  <%= form.text_field :last_name %>
+
+  <%= form.label :email %>
+  <%= form.email_field :email %>
+
+  <%= form.fields_for :builds do |build_form| %>
+    <%= build_form.label :title %>
+    <%= build_form.text_field :title %>
+
+    <%= build_form.label :notes %>
+    <%= build_form.text_area :notes %>
+  <% end %>
+
+  <%= form.submit %>
+<% end %>

@@ -1,0 +1,63 @@
+<%= form_with(model: customer) do |form| %>
+  <% if customer.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(customer.errors.count, "error") %> prohibited this customer from being saved:</h2>
+
+      <ul>
+        <% customer.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :first_name, style: "display: block" %>
+    <%= form.text_field :first_name %>
+  </div>
+
+  <div>
+    <%= form.label :last_name, style: "display: block" %>
+    <%= form.text_field :last_name %>
+  </div>
+
+  <div>
+    <%= form.label :email, style: "display: block" %>
+    <%= form.text_field :email %>
+  </div>
+
+  <div>
+    <%= form.label :profile_picture, style: "display: block" %>
+    <%= form.file_field :profile_picture %>
+  </div>
+
+<h2>Edit Build Information</h2>
+
+  <%= form.fields_for :build do |build_form| %>
+    <div>
+      <%= build_form.label :email %>
+      <%= build_form.text_field :email %>
+    </div>
+
+    <div>
+      <%= build_form.label :active %>
+      <%= build_form.check_box :active %>
+    </div>
+
+    <div>
+      <%= build_form.label :summary %>
+      <%= build_form.text_area :summary %>
+    </div>
+
+    <div>
+      <%= build_form.label :skills %>
+      <%= build_form.text_area :skills %>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.submit "Update Profile" %>
+  </div>
+  
+<% end %>
+

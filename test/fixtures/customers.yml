@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  first_name: Stack
+  last_name: Terror
+  school_email: sterror@msudenver.edu
+
+two:
+  first_name: Run
+  last_name: Time
+  school_email: rtime@msudenver.edu

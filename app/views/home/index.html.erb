@@ -1,0 +1,7 @@
+<% if current_customer %>
+  <h1>Welcome, <%= current_customer.first_name %>!</h1>
+  <%= link_to "My Builds", builds_path(current_customer), class: "btn btn-primary" %>
+<% else %>
+  <h1>Welcome, Guest!</h1>
+  <%= link_to "Sign Up", new_customer_registration_path, class: "btn btn-primary" %>
+<% end %>

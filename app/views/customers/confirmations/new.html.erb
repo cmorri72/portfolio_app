@@ -1,0 +1,32 @@
+<h2>Resend confirmation instructions</h2>
+
+<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+  <%= render "customers/shared/error_messages", resource: resource %>
+
+  <div>
+    <%= f.label :first_name, style: "display: block" %>
+    <%= f.text_field :first_name %>
+  </div>
+
+  <div>
+    <%= f.label :last_name, style: "display: block" %>
+    <%= f.text_field :last_name %>
+  </div>
+
+  <div>
+    <%= f.label :profile_picture, style: "display: block" %>
+    <%= f.file_field :profile_picture %>
+  </div>
+
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Resend confirmation instructions" %>
+  </div>
+<% end %>
+
+<%= render "customers/shared/links" %>

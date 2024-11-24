@@ -1,0 +1,40 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Customers</h1>
+
+
+<div class="text-bg-primary p-3">Provide summary for employers</div>
+
+<%= render 'search_form', search_params: @search_params %>
+<h3>Search Results:</h3>
+<% if @customers.any? %>
+  
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @customers.each do |customer| %>
+        <tr>
+          <td><%= customer.first_name %></td>
+          <td><%= customer.last_name %></td>
+          <td>
+            <%= link_to "Show", customer_path(customer), class: "btn btn-info" %>
+            <%= link_to "Edit", edit_customer_path(customer), class: "btn btn-warning" %>
+            <%= link_to "Delete", customer, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% elsif @search_params.present? %>
+  <p>No customers found matching your search criteria.</p>
+<% else %>
+  <p>Please enter search criteria to find customers.</p>
+<% end %>
+
+
