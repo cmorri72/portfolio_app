@@ -1,0 +1,19 @@
+<h1 class="text-center">Admin Login</h1>
+
+<div class="container mt-4">
+  <%= form_with url: admin_session_path, local: true, class: "row g-3" do |f| %>
+    <div class="col-md-6">
+      <%= f.label :email, class: "form-label" %>
+      <%= f.email_field :email, name: "admin[email]", class: "form-control", autofocus: true, autocomplete: "email" %>
+    </div>
+    <div class="col-md-6">
+      <%= f.label :password, class: "form-label" %>
+      <%= f.password_field :password, name: "admin[password]", class: "form-control", autocomplete: "current-password" %>
+    </div>
+    <div class="col-12">
+      <%= f.submit "Login", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
+
+

@@ -1,0 +1,23 @@
+<h1 class="text-center"><%= @item.title %></h1>
+
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-6">
+      <% if @item.image.attached? %>
+        <%= image_tag @item.image, class: "img-fluid", alt: @item.title %>
+      <% else %>
+        <img src="https://via.placeholder.com/300" class="img-fluid" alt="No Image Available">
+      <% end %>
+    </div>
+    <div class="col-md-6">
+      <p><strong>Description:</strong></p>
+      <p><%= @item.description %></p>
+      <p><strong>Price:</strong> $<%= @item.price %></p>
+      <% if current_admin %>
+        <%= link_to "Edit Item", edit_item_path(@item), class: "btn btn-warning" %>
+        <%= link_to "Delete Item", item_path(@item), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+      <% end %>
+    </div>
+  </div>
+  <%= link_to "Back to Inventory", items_path, class: "btn btn-secondary mt-4" %>
+</div>

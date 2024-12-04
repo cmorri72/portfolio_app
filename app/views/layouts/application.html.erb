@@ -11,15 +11,12 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
     <%= stylesheet_link_tag "application", media: "all", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", type: "module", "data-turbo-track": "reload", defer: true %>
-   <!-- Custom Styles -->
- 
+    <!-- Custom Styles -->
   </head>
 
   <body class="bg-light">
     <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #000;">
       <div class="container-fluid">
-      
-
         <%= image_tag 'JETPWR Logo WHITE.PNG', alt: 'Default Profile Picture', width: 66, height: 60 %>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
           <span class="navbar-toggler-icon"></span>
@@ -27,30 +24,34 @@
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="#">Home</a>
+              <a class="nav-link" href="<%= root_path %>">Home</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Sign In</a></li>
-                <li><a class="dropdown-item" href="#">Sign Up</a></li>
+                <% if customer_signed_in? %>
+                  <li><%= link_to 'My Builds', builds_path, class: 'dropdown-item' %></li>
+                  <li><%= button_to "Sign Out", destroy_customer_session_path, method: :delete, class: "dropdown-item text-danger" %></li>
+                <% elsif current_admin %>
+                  <li><%= link_to 'Dashboard', admin_dashboard_path, class: 'dropdown-item' %></li>
+                  <li><%= button_to "Sign Out", destroy_admin_session_path, method: :delete, class: "dropdown-item text-danger" %></li>
+                <% else %>
+                  <li><%= link_to 'Sign In', new_customer_session_path, class: 'dropdown-item' %></li>
+                  <li><%= link_to 'Sign Up', new_customer_registration_path, class: 'dropdown-item' %></li>
+                  <li><%= link_to 'Admin Login', new_admin_session_path, class: 'dropdown-item' %></li>
+                <% end %>
               </ul>
             </li>
           </ul>
         </div>
+        <h1 class="text-center">JET PWR</h1>
       </div>
     </nav>
-       <p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p>
-
-    <% if customer_signed_in? %>
-  <%= button_to "Sign Out", destroy_customer_session_path, method: :delete %>
-<% else %>
-  <%= link_to 'Sign In', new_customer_session_path %>
-  <%= link_to 'Sign Up', new_customer_registration_path %>
-<% end %>
-
+    
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
 
     <%= yield %>
   </body>
 </html>
+

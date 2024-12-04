@@ -1,26 +1,21 @@
 <h1>Create a New Build</h1>
 
-<%= form_with model: @build, local: true do |form| %>
-  <div class="form-group">
-    <%= form.label :title %>
-    <%= form.text_field :title, class: "form-control", required: true %>
+<%= form_with model: @build, url: (current_admin ? customer_admins_builds_path(customer_id: @build.customer_id) : builds_path), local: true do |f| %>
+  <div>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
   </div>
-
-  <div class="form-group">
-    <%= form.label :notes %>
-    <%= form.text_area :notes, class: "form-control" %>
+  <div>
+    <%= f.label :notes %>
+    <%= f.text_area :notes %>
   </div>
-
-  <div class="form-group">
-    <%= form.label :last_modified %>
-    <%= form.datetime_select :last_modified, class: "form-control" %>
+  <div>
+    <%= f.label :last_modified %>
+    <%= f.datetime_select :last_modified %>
   </div>
-
-  <div class="form-group">
-    <%= form.label :active %>
-    <%= form.check_box :active %>
+  <div>
+    <%= f.submit 'Create Build', class: 'btn btn-primary' %>
   </div>
-
-  <%= form.submit "Save", class: "btn btn-primary" %>
-  <%= link_to "Cancel", builds_path, class: "btn btn-secondary" %>
 <% end %>
+
+<%= link_to 'Back', (current_admin ? admin_dashboard_path : builds_path), class: 'btn btn-secondary' %>

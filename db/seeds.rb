@@ -23,6 +23,17 @@ ActiveStorage::Blob.where.missing(:attachments).find_each(&:purge)
 Build.destroy_all
 Customer.destroy_all
 
+
+# Create an admin user
+Admin.create!(
+  first_name: "Demi",
+  last_name: "Morgan",
+  email: "demi@gmail.com",
+  password: "highspeed",
+  password_confirmation: "highspeed"
+)
+
+
 50.times do |i|
   customer =Customer.create!(
     first_name: "First #{i + 1}",
@@ -41,6 +52,7 @@ Customer.destroy_all
     summary: Faker::Lorem.sentence(word_count: 20),
     skills: Faker::Lorem.words(number: 5).join(", ")
   )
+
 
 
    # Generate a unique profile pic based on the customer's name

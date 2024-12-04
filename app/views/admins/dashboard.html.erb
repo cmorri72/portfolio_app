@@ -1,0 +1,16 @@
+<h1 class="text-center">Admin Dashboard</h1>
+
+<%= link_to 'Logout', destroy_admin_session_path, method: :delete, class: 'btn btn-danger' %>
+
+<h2>Customers</h2>
+<ul>
+  <% @customers.each do |customer| %>
+    <li>
+      <%= customer.first_name %> <%= customer.last_name %> - <%= customer.email %>
+      <%= link_to 'View Builds', customer_admins_builds_path(customer_id: customer.id) %>
+    </li>
+  <% end %>
+</ul>
+
+
+

@@ -1,0 +1,25 @@
+<h1>Builds for <%= @customer.first_name %> <%= @customer.last_name %></h1>
+<table>
+  <thead>
+    <tr>
+      <th>Jetski Model</th>
+      <th>Engine Type</th>
+      <th>Color</th>
+      <th>Last Modified</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @builds.each do |build| %>
+      <tr>
+        <td><%= build.jetski_model %></td>
+        <td><%= build.engine_type %></td>
+        <td><%= build.color %></td>
+        <td><%= build.last_modified %></td>
+        <td>
+          <%= link_to 'Edit', edit_admin_build_path(build) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

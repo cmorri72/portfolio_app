@@ -1,0 +1,19 @@
+<h1>Builds for <%= @customer.first_name %> <%= @customer.last_name %></h1>
+
+<%= link_to 'Create a Build', new_customer_admins_build_path(customer_id: @customer.id), class: 'btn btn-primary' %>
+
+<ul>
+  <% @builds.each do |build| %>
+    <li>
+      <strong>Title:</strong> <%= build.title %>
+      <br>
+      <strong>Notes:</strong> <%= build.notes %>
+      <br>
+      <strong>Last Modified:</strong> <%= build.last_modified %>
+      <br>
+      <%= link_to 'Edit', edit_build_path(build), class: 'btn btn-secondary' %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to 'Back to Dashboard', admin_dashboard_path, class: 'btn btn-secondary' %>

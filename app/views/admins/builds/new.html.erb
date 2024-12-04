@@ -1,0 +1,21 @@
+<h1>Create a Build for <%= @customer.first_name %> <%= @customer.last_name %></h1>
+
+<%= form_with model: @build, url: customer_admins_builds_path(customer_id: @customer.id), local: true do |f| %>
+  <div>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  <div>
+    <%= f.label :notes %>
+    <%= f.text_area :notes %>
+  </div>
+  <div>
+    <%= f.label :last_modified %>
+    <%= f.datetime_select :last_modified %>
+  </div>
+  <div>
+    <%= f.submit 'Create Build', class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
+<%= link_to 'Back to Build List', customer_admins_builds_path(customer_id: @customer.id), class: 'btn btn-secondary' %>
